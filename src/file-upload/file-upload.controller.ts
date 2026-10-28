@@ -23,7 +23,7 @@ export class FileUploadController {
     }),
   )
   uploadFile(
-    @UploadedFile(createParseFilePipe(2 * 1024 * 1024, /png|jpg/))
+    @UploadedFile(createParseFilePipe(2 * 1024 * 1024, ['png', 'jpg']))
     file: File,
   ) {
     return file;
@@ -35,7 +35,7 @@ export class FileUploadController {
     FilesInterceptor('files', 3, { limits: { fieldSize: 2 * 1024 * 1024 } }),
   )
   uploadFiles(
-    @UploadedFiles(createParseFilePipe(2 * 1024 * 1024, /png|jpg/))
+    @UploadedFiles(createParseFilePipe(2 * 1024 * 1024, ['png', 'jpg']))
     files: File[],
   ) {
     return files.map((file) => file.originalname);
