@@ -1,4 +1,4 @@
-import * as bytes from 'bytes';
+import bytes from 'bytes';
 import {
   FileTypeValidator,
   FileValidator,
@@ -20,7 +20,7 @@ const createFileValidator = (
   return [
     // 1) Validate file size
     new MaxFileSizeValidator({
-      maxSize: bytes(maxSize), // 200 byte
+      maxSize: Number(bytes(maxSize as string) ?? 0), // 200 byte
       message: (maxSize) =>
         `File is too big. Max file size is ${maxSize} bytes`,
     }),
